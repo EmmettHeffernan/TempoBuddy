@@ -1,0 +1,88 @@
+<CalibrationScreen>:
+    name: "calibration"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 10
+        spacing: 12
+
+        Label:
+            text: "Calibration Menu"
+            font_name: "RetroFont"
+            font_size: "18sp"
+            size_hint_y: None
+            height: 40
+
+        # Threshold
+        BoxLayout:
+            Label:
+                text: "Threshold: {:.2f}".format(root.threshold)
+                font_name: "RetroFont"
+            Slider:
+                min: 0
+                max: 1
+                step: 0.01
+                value: root.threshold
+                on_value: root.threshold = self.value
+
+        # Low Cut
+        BoxLayout:
+            Label:
+                text: "Low Cut: {}Hz".format(int(root.low_cut))
+                font_name: "RetroFont"
+            Slider:
+                min: 20
+                max: 200
+                step: 1
+                value: root.low_cut
+                on_value: root.low_cut = self.value
+
+        # Peak Width
+        BoxLayout:
+            Label:
+                text: "Peak Width: {}ms".format(int(root.peak_width))
+                font_name: "RetroFont"
+            Slider:
+                min: 5
+                max: 50
+                step: 1
+                value: root.peak_width
+                on_value: root.peak_width = self.value
+
+        # Latency Offset
+        BoxLayout:
+            Label:
+                text: "Latency Offset: {}ms".format(int(root.latency_offset))
+                font_name: "RetroFont"
+            Slider:
+                min: -50
+                max: 50
+                step: 1
+                value: root.latency_offset
+                on_value: root.latency_offset = self.value
+
+        # Flash visualizer (tiny rectangle)
+        Widget:
+            canvas.before:
+                Color:
+                    rgba: (0, 1, 0, 1) if root.threshold > 0.5 else (0.2, 0.2, 0.2, 1)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            spacing: 12
+
+            Button:
+                text: "Test Input"
+                font_name: "RetroFont"
+                on_release:
+                    # TODO: call audio test loop
+                    print("Testing with threshold", root.threshold)
+
+            Button:
+                text: "Save"
+                font_name: "RetroFont"
+                on_release: root.save_values()

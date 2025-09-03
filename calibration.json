@@ -1,0 +1,7 @@
+{
+  "dyn_threshold_db": -20,
+  "noise_gate_db": -40,
+  "lowcut": 80.0,
+  "highcut": 2000.0,
+  "min_interval": 50
+}

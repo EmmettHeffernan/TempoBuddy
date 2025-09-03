@@ -1,0 +1,41 @@
+#:import rgba kivy.utils.get_color_from_hex
+
+# Global defaults
+<Label>:
+    font_name: "RetroFont"
+    font_size: 14
+    color: rgba("#E0E0E0")
+
+<Button>:
+    font_name: "RetroFont"
+    font_size: 14
+    background_normal: ""
+    background_color: rgba("#3AFF3A")
+    color: rgba("#101010")
+    border: (2, 2, 2, 2)
+    size_hint_y: None
+    height: "48dp"
+
+<Spinner>:
+    font_name: "RetroFont"
+    font_size: 14
+    background_normal: ""
+    background_color: rgba("#0E0E0E")
+    color: rgba("#E0E0E0")
+
+# Optional framed box you can use anywhere
+<RetroBox@BoxLayout>:
+    padding: 8
+    spacing: 6
+    canvas.before:
+        Color:
+            rgba: rgba("#101010")
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgba: rgba("#3AFF3A")
+        Line:
+            rectangle: (*self.pos, *self.size)
+            width: 2
+
