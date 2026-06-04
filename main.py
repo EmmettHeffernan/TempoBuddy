@@ -777,7 +777,7 @@ class RootUI(BoxLayout):
         self.highcut = float(val)
 
     def set_min_interval(self, val):
-        self.min_interval = float(val)
+        self.min_interval = float(val) / 1000.0
 
     def set_noise_gate(self, val):
         self.noise_gate_db = float(val)
